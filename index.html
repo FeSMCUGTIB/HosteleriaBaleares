@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso Convenio Hostelería · UGT FeSMC Illes Balears</title>
+<meta property="og:title" content="XVII Convenio Hostelería Baleares · UGT FeSMC">
+<meta property="og:description" content="Repasa las 53 tarjetas del convenio. Responde mentalmente y comprueba tus aciertos.">
+<meta property="og:image" content="https://ugtlidlbaleares.github.io/HosteleriaBaleares/preview.png">
+<meta property="og:url" content="https://ugtlidlbaleares.github.io/HosteleriaBaleares/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XVII Convenio Hostelería Baleares · UGT FeSMC">
+<meta name="twitter:description" content="Repasa las 53 tarjetas del convenio. Responde mentalmente y comprueba tus aciertos.">
+<meta name="twitter:image" content="https://ugtlidlbaleares.github.io/HosteleriaBaleares/preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #CC1F1F; --red-dark: #A01818; --red-light: #FCEBEB;
+    --blue: #0EA5E9; --blue-dark: #0369A1; --blue-text: #0C2D48;
+    --gray-50: #F8F7F4; --gray-100: #EDEBE5; --gray-300: #C4C2BA;
+    --gray-500: #7A7870; --gray-800: #2C2B28;
+    --green: #2D6E1A; --green-light: #EDF5E8; --white: #FFFFFF;
+    --shadow-card: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.07);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08);
+    --radius: 16px; --radius-sm: 8px;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--gray-50); color: var(--gray-800); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 16px 40px; }
+  header { width: 100%; max-width: 680px; padding: 28px 0 20px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .logo-wrap { background: var(--white); border-radius: var(--radius); padding: 14px 28px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; }
+  .logo-wrap img { height: 52px; width: auto; }
+  .meta { text-align: center; }
+  .meta h1 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--gray-800); margin-bottom: 4px; }
+  .meta p { font-size: 13px; color: var(--gray-500); }
+  .stats-bar { width: 100%; max-width: 680px; display: flex; gap: 10px; margin-bottom: 24px; }
+  .stat { flex: 1; background: var(--white); border-radius: var(--radius-sm); padding: 10px 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; }
+  .stat-val { font-size: 22px; font-weight: 600; line-height: 1.1; }
+  .stat-label { font-size: 11px; color: var(--gray-500); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat.correct .stat-val { color: var(--green); }
+  .stat.wrong .stat-val { color: var(--red); }
+  .stat.pending .stat-val { color: var(--gray-800); }
+  .progress-wrap { width: 100%; max-width: 680px; margin-bottom: 28px; }
+  .progress-track { height: 4px; background: var(--gray-100); border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+  .progress-fill { height: 100%; background: var(--red); border-radius: 2px; transition: width 0.4s ease; }
+  .progress-label { font-size: 12px; color: var(--gray-500); text-align: right; }
+  .scene { width: 100%; max-width: 680px; perspective: 1400px; margin-bottom: 32px; cursor: pointer; }
+  .card { width: 100%; min-height: 280px; position: relative; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); user-select: none; }
+  .card.flipped { transform: rotateY(180deg); }
+  .face { position: absolute; inset: 0; min-height: 280px; border-radius: var(--radius); padding: 36px 40px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow-card); transition: box-shadow 0.2s; }
+  .scene:hover .face { box-shadow: var(--shadow-hover); }
+  .face.front { background: var(--blue); }
+  .face.back { background: var(--red); transform: rotateY(180deg); }
+  .face-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 20px; }
+  .face.front .face-badge { background: rgba(255,255,255,0.25); color: var(--white); }
+  .face.back .face-badge { background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); }
+  .face.front .question-text { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; color: var(--white); line-height: 1.5; max-width: 540px; }
+  .face.back .answer-text { font-size: 17px; font-weight: 500; color: var(--white); line-height: 1.55; max-width: 540px; }
+  .flip-hint { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 24px; display: flex; align-items: center; gap: 5px; }
+  .flip-hint svg { width: 14px; height: 14px; stroke: rgba(255,255,255,0.7); }
+  .controls { width: 100%; max-width: 680px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+  .btn { border: none; border-radius: var(--radius-sm); padding: 16px 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: transform 0.12s ease, background 0.12s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .btn:active { transform: scale(0.96); }
+  .btn svg { width: 22px; height: 22px; stroke-width: 2; stroke: currentColor; fill: none; }
+  .btn-nav { background: var(--white); color: var(--gray-800); }
+  .btn-nav:hover { background: var(--gray-100); }
+  .btn-correct { background: var(--green-light); color: var(--green); }
+  .btn-correct:hover { background: #D7EDCE; }
+  .btn-wrong { background: var(--red-light); color: var(--red); }
+  .btn-wrong:hover { background: #F7D0D0; }
+  .btn span { font-size: 11px; font-weight: 500; opacity: 0.75; }
+  .feedback-anim { position: fixed; inset: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; z-index: 100; opacity: 0; transition: opacity 0.1s; }
+  .feedback-anim.show { opacity: 1; }
+  .feedback-emoji { font-size: 80px; animation: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  .finished-screen { display: none; width: 100%; max-width: 680px; background: var(--white); border-radius: var(--radius); padding: 48px 40px; text-align: center; box-shadow: var(--shadow-card); }
+  .finished-screen.show { display: block; }
+  .finished-screen h2 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 12px; color: var(--gray-800); }
+  .finished-screen p { color: var(--gray-500); margin-bottom: 28px; font-size: 15px; }
+  .score-big { font-size: 56px; font-weight: 600; color: var(--red); line-height: 1; margin-bottom: 8px; }
+  .score-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 32px; }
+  .btn-restart { background: var(--red); color: var(--white); border: none; border-radius: var(--radius-sm); padding: 14px 32px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+  .btn-restart:hover { background: var(--red-dark); }
+  @media (max-width: 480px) {
+    .face { padding: 28px 22px; }
+    .face.front .question-text { font-size: 17px; }
+    .face.back .answer-text { font-size: 15px; }
+    .controls { gap: 8px; }
+    .btn { padding: 13px 6px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="LogoFeSMC_mono_rojo_Illes_Balears.png" alt="UGT FeSMC Illes Balears">
+  </div>
+  <div class="meta">
+    <h1>XVII Convenio Hostelería Baleares</h1>
+    <p>Repasa las tarjetas · Responde mentalmente · Marca si acertaste</p>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat correct"><div class="stat-val" id="count-correct">0</div><div class="stat-label">Correctas</div></div>
+  <div class="stat wrong"><div class="stat-val" id="count-wrong">0</div><div class="stat-label">Errores</div></div>
+  <div class="stat pending"><div class="stat-val" id="count-pending">0</div><div class="stat-label">Restantes</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-label" id="progress-label">0 de 0</div>
+</div>
+
+<div class="scene" id="scene" onclick="flipCard()">
+  <div class="card" id="card">
+    <div class="face front">
+      <div class="face-badge">Pregunta</div>
+      <p class="question-text" id="question-text">Cargando...</p>
+      <div class="flip-hint">
+        <svg viewBox="0 0 24 24"><path d="M4 12v-2a8 8 0 0 1 14.93-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12v2a8 8 0 0 1-14.93 4" stroke-linecap="round" stroke-linejoin="round"/><polyline points="15 3 19 7 15 11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9 21 5 17 9 13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Toca para ver la respuesta
+      </div>
+    </div>
+    <div class="face back">
+      <div class="face-badge">Respuesta</div>
+      <p class="answer-text" id="answer-text"></p>
+    </div>
+  </div>
+</div>
+
+<div class="controls" id="controls">
+  <button class="btn btn-nav" onclick="navigate(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Anterior</span></button>
+  <button class="btn btn-correct" onclick="markAnswer(true)"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correcto</span></button>
+  <button class="btn btn-wrong" onclick="markAnswer(false)"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/></svg><span>Error</span></button>
+  <button class="btn btn-nav" onclick="navigate(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Siguiente</span></button>
+</div>
+
+<div class="finished-screen" id="finished-screen">
+  <h2>¡Repaso completado!</h2>
+  <div class="score-big" id="final-score">—</div>
+  <div class="score-sub" id="final-sub">de tarjetas correctas</div>
+  <p id="final-msg">Buen trabajo. Sigue practicando para consolidar el convenio.</p>
+  <button class="btn-restart" onclick="restart()">Reiniciar baraja</button>
+</div>
+
+<div class="feedback-anim" id="feedback-anim">
+  <div class="feedback-emoji" id="feedback-emoji"></div>
+</div>
+
+<script>
+const DATA = [
+  { q: "¿Cuál es el incremento salarial total pactado para el periodo 2025-2028?", a: "Se ha logrado una subida histórica del 13,5% repartida en tres años." },
+  { q: "¿Qué subida salarial general se aplica específicamente para el año 2026-2027?", a: "Para el segundo año de vigencia se aplica un incremento del 4% sobre las tablas vigentes." },
+  { q: "¿Cuál es el incremento salarial pactado para el último año de vigencia (2027-2028)?", a: "Se ha establecido una subida del 3,5% para el periodo final del convenio." },
+  { q: "¿Qué ocurre si el IPC supera el 3,5% en el último año del convenio?", a: "Se activa una cláusula de garantía salarial que suma hasta un 1% adicional sin efectos retroactivos." },
+  { q: "¿Cuál es el salario bruto mensual mínimo en el sector tras la subida de 2025?", a: "El salario más bajo garantizado supera los 1.946 euros brutos al mes." },
+  { q: "¿A cuántos meses se amplía la garantía de ocupación anual para fijos-discontinuos?", a: "Se ha conseguido ampliar la garantía de trabajo de 6 a un máximo de 9 meses anuales." },
+  { q: "¿Qué requisito debe cumplir un trabajador para consolidar la garantía de 9 meses?", a: "Haber trabajado de forma efectiva y continuada más de 6 meses durante tres años consecutivos a partir de abril 2025." },
+  { q: "¿Con cuánta antelación mínima debe la empresa comunicar los turnos quincenales?", a: "La empresa tiene la obligación de entregar los turnos con al menos 10 días de antelación." },
+  { q: "¿Cuál es el plazo máximo para que un fijo-discontinuo responda al llamamiento?", a: "El trabajador dispone de 72 horas para contestar por escrito tras recibir la notificación." },
+  { q: "¿Con cuánta antelación mínima debe realizar la empresa el llamamiento?", a: "Debe realizarse con al menos 10 días naturales de antelación para el periodo garantizado." },
+  { q: "¿Cuántos días de vacaciones naturales corresponden anualmente a cada trabajador?", a: "Se garantizan 35 días naturales de vacaciones para toda la plantilla." },
+  { q: "¿Qué regla impide que el inicio de las vacaciones coincida con el descanso semanal?", a: "El inicio del periodo de vacaciones nunca puede coincidir con un día de descanso semanal del trabajador." },
+  { q: "¿Cómo se compensan los festivos trabajados si no hay un acuerdo específico?", a: "Si no hay acuerdo, se acumulan obligatoriamente al periodo anual de vacaciones." },
+  { q: "¿Qué medida de salud laboral es obligatoria para las camareras de pisos?", a: "Es obligatorio realizar la medición de cargas de trabajo según la metodología del IBASSAL." },
+  { q: "¿Es obligatoria la medición de cargas en hoteles sin delegados sindicales?", a: "Sí, el convenio obliga a cumplirla en todos los establecimientos, tengan o no representación legal." },
+  { q: "¿Qué petición se ha incluido sobre la jubilación de las camareras de pisos?", a: "Se ha solicitado al Gobierno que puedan jubilarse antes sin penalizaciones en su pensión." },
+  { q: "¿Qué características debe tener la ropa de trabajo en situaciones de calor?", a: "Debe ser de materiales ligeros, transpirables y, preferiblemente, de colores claros." },
+  { q: "¿Qué protección incluye el convenio para el colectivo LGTBI?", a: "Incluye protocolos específicos contra el acoso y la discriminación por orientación o identidad sexual." },
+  { q: "¿De cuánto es el Plus de Desplazamiento mensual para el año 2026-2027?", a: "El importe mensual fijado es de 141,34 euros." },
+  { q: "¿Cuál es la cuantía del Plus de Desplazamiento para el año 2027-2028?", a: "El importe asciende a 146,29 euros mensuales." },
+  { q: "¿Qué horario se considera para el cobro del Plus de Nocturnidad?", a: "El trabajo realizado entre las 22:00 de la noche y las 06:00 de la mañana." },
+  { q: "¿Cuándo se genera el derecho a percibir el Plus de Idiomas?", a: "Cuando la empresa exige el uso de lenguas extranjeras para la atención directa al cliente." },
+  { q: "¿En qué tramos de años de servicio se consolidan los trienios de antigüedad?", a: "Se consolidan a los 3, 6, 9, 14, 19 y 24 años de servicio efectivo." },
+  { q: "¿Cuál es la jornada laboral máxima efectiva al año?", a: "La jornada máxima anual es de 1.776 horas de trabajo efectivo." },
+  { q: "¿De cuánto es el descanso obligatorio en jornadas continuas de más de 5 horas?", a: "Es de 15 minutos y computa como tiempo de trabajo efectivo." },
+  { q: "¿Cuál es el límite máximo de horas de trabajo ordinario en un solo día?", a: "Como norma general, el trabajo efectivo no podrá ser superior a 9 horas diarias." },
+  { q: "¿Qué descanso semanal corresponde a centros con más de 30 empleados?", a: "Tienen derecho a dos días de descanso semanal que deben ser consecutivos." },
+  { q: "¿Qué ayuda económica reciben los fijos-discontinuos que se forman?", a: "Tienen derecho a una ayuda de 426 euros para fomentar su formación profesional." },
+  { q: "¿Existe algún incentivo por acreditar la experiencia mediante formación?", a: "Sí, el convenio contempla una ayuda de 200 euros para quienes lo acrediten." },
+  { q: "¿Cuántos días de permiso corresponden por matrimonio o registro de pareja de hecho?", a: "Corresponden 15 días naturales de permiso retribuido." },
+  { q: "¿Qué permiso se concede por enfermedad grave o accidente de un familiar?", a: "Un permiso retribuido de 5 días para cónyuge, pareja o parientes hasta segundo grado." },
+  { q: "¿Tienen preferencia de turno quienes cuidan a hijos menores de 12 años?", a: "Sí, tienen preferencia para realizar la jornada de forma continuada si esta existe en el centro." },
+  { q: "¿Qué ocurre con el descanso semanal para quienes tienen hijos menores?", a: "Tienen preferencia para disfrutar el descanso en sábados y domingos de forma rotativa." },
+  { q: "¿Hasta qué edad se puede solicitar excedencia para el cuidado de un hijo?", a: "Se puede solicitar una excedencia de hasta 4 años con reserva del puesto." },
+  { q: "¿Qué seguro debe garantizar la empresa en caso de muerte o invalidez por accidente?", a: "Una póliza con un capital garantizado de 19.000 euros." },
+  { q: "¿Complementa la empresa el salario en caso de accidente laboral?", a: "Sí, se complementa hasta el 100% del salario base y antigüedad desde el primer día." },
+  { q: "¿Y en caso de enfermedad común, desde qué día se complementa la baja?", a: "Se complementa hasta el 100% a partir del cuarto día de la baja médica." },
+  { q: "¿Cuál es la duración mínima de un contrato de formación en el sector?", a: "La duración mínima es de 6 meses para adaptarse a la estacionalidad." },
+  { q: "¿Qué salario mínimo se garantiza en un contrato de formación?", a: "Como mínimo, el 60% del salario fijado en el convenio para ese puesto." },
+  { q: "¿Con qué antelación debe preavisar el trabajador si desea causar baja voluntaria?", a: "15 días naturales para personal general y 30 días para jefaturas." },
+  { q: "¿Qué indemnización extra hay por reclamación judicial exitosa de salarios?", a: "Un recargo del 30% sobre la cantidad fijada si la empresa no ofreció el pago previo." },
+  { q: "¿A qué edad es posible la jubilación forzosa en este convenio?", a: "A partir de los 68 años, siempre que la empresa realice un contrato indefinido nuevo." },
+  { q: "¿Qué organismo supervisará la productividad y el absentismo laboral?", a: "Se ha creado un Observatorio específico para analizar estos factores de forma conjunta." },
+  { q: "¿Qué formación debe facilitar la empresa sobre manipulación de alimentos?", a: "La formación debe ser adecuada, periódica y sin coste alguno para el trabajador." },
+  { q: "¿Qué crédito horario mensual tienen los delegados de personal en centros de hasta 50 empleados?", a: "Disponen de 20 horas mensuales retribuidas para sus funciones de representación." },
+  { q: "¿Se pueden acumular semestralmente las horas de los representantes sindicales?", a: "Sí, los delegados pueden acumular sus horas para realizar funciones sindicales o formación." },
+  { q: "¿A partir de cuántos empleados es obligatorio tener un Plan de Igualdad?", a: "Es obligatorio para todas las empresas de 50 o más personas trabajadoras." },
+  { q: "¿Cómo se ha flexibilizado la interrupción para contratos fijos-discontinuos cortos?", a: "Se reduce de 45 a 30 días el periodo mínimo de interrupción para contratos de 7 meses o menos." },
+  { q: "¿Qué sucede si el Gobierno reduce la jornada legal a 37,5 horas?", a: "Sindicatos y patronal se comprometen a reunirse para adaptar el convenio a la nueva ley." },
+  { q: "¿Es obligatorio el uso de lenguaje inclusivo en las ofertas de empleo?", a: "Sí, para garantizar la igualdad en el acceso y evitar sesgos discriminatorios." },
+  { q: "¿En qué islas es de aplicación obligatoria este convenio?", a: "En todas las Illes Balears: Mallorca, Menorca, Ibiza y Formentera." },
+  { q: "¿Hasta qué fecha está vigente el compromiso de paz social?", a: "Hasta el 31 de marzo de 2028, evitando huelgas si se cumple lo pactado." },
+  { q: "¿Por qué califica UGT este acuerdo como 'histórico'?", a: "Por ser pionero en España al combinar una gran subida salarial con avances sociales en salud y conciliación." }
+];
+
+let deck = [], current = 0, isFlipped = false, results = {};
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function init() {
+  deck = shuffle(DATA); current = 0; isFlipped = false; results = {};
+  document.getElementById('finished-screen').classList.remove('show');
+  document.getElementById('controls').style.display = '';
+  document.getElementById('scene').style.display = '';
+  document.querySelector('.stats-bar').style.display = '';
+  document.querySelector('.progress-wrap').style.display = '';
+  renderCard(); updateStats();
+}
+
+function renderCard() {
+  const item = deck[current];
+  document.getElementById('question-text').textContent = item.q;
+  document.getElementById('answer-text').textContent = item.a;
+  document.getElementById('card').classList.remove('flipped');
+  isFlipped = false;
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('card').classList.toggle('flipped', isFlipped);
+}
+
+function navigate(dir) {
+  const next = current + dir;
+  if (next < 0 || next >= deck.length) return;
+  current = next; renderCard();
+}
+
+function markAnswer(correct) {
+  results[current] = correct;
+  showFeedback(correct); updateStats();
+  setTimeout(() => {
+    const next = current + 1;
+    if (next >= deck.length) { showFinished(); } else { current = next; renderCard(); }
+  }, 400);
+}
+
+function showFeedback(correct) {
+  const el = document.getElementById('feedback-anim');
+  document.getElementById('feedback-emoji').textContent = correct ? '✅' : '❌';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 500);
+}
+
+function updateStats() {
+  const vals = Object.values(results);
+  const correct = vals.filter(v => v).length;
+  const wrong = vals.filter(v => !v).length;
+  document.getElementById('count-correct').textContent = correct;
+  document.getElementById('count-wrong').textContent = wrong;
+  document.getElementById('count-pending').textContent = deck.length - vals.length;
+  const pct = deck.length > 0 ? Math.round((vals.length / deck.length) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = vals.length + ' de ' + deck.length;
+}
+
+function showFinished() {
+  document.getElementById('controls').style.display = 'none';
+  document.getElementById('scene').style.display = 'none';
+  const vals = Object.values(results);
+  const correct = vals.filter(v => v).length;
+  const total = vals.length;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  document.getElementById('final-score').textContent = pct + '%';
+  document.getElementById('final-sub').textContent = correct + ' de ' + total + ' tarjetas correctas';
+  let msg = 'Sigue practicando para consolidar el convenio.';
+  if (pct >= 90) msg = '¡Dominas el convenio! Excelente trabajo.';
+  else if (pct >= 70) msg = 'Buen nivel. Repasa los puntos fallidos.';
+  else if (pct >= 50) msg = 'Vas bien. Sigue practicando esta sección.';
+  document.getElementById('final-msg').textContent = msg;
+  document.getElementById('finished-screen').classList.add('show');
+}
+
+function restart() { init(); }
+init();
+</script>
+</body>
+</html>
